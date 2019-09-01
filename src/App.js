@@ -24,7 +24,9 @@ class App extends Component {
   };
 
   deletePersonHandler = personIndex => {
-    const persons = this.state.persons;
+    // using slice or the spread operator we're create a copy of the array  instead of using the reference
+    // const persons = this.state.persons.slice;
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
   };
