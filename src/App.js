@@ -18,7 +18,7 @@ class App extends Component {
       return p.id === id;
     });
 
-    // take an object copy of this element
+    // take an object copy of this element not the reference
     const person = {
       ...this.state.persons[personIndex]
     };
