@@ -4,6 +4,10 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/CockPit';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
   state = {
     persons: [
       { id: '1', name: 'Max', age: 28 },
@@ -14,6 +18,24 @@ class App extends Component {
     showPersons: false
   };
 
+  // this is a lifecycle method that is run after the constructor,to get the right state from props(preparing your state)
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  //this is an old lifecyle hook method ,
+  //it will execute just before the componentDidMount, it was used to prepare the state
+  //now this can be done via the getDerivedStateFromProps, it will be remove soon
+
+  /*componentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }*/
+
+  //this another lifecyle method thait run after the render, it helps us make http request
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -47,6 +69,8 @@ class App extends Component {
   };
 
   render() {
+    // this is another licycle method that is run after getDerivedStateFromProps
+    console.log('[App.js] render');
     let persons = null;
 
     if (this.state.showPersons) {
