@@ -9,11 +9,12 @@ const cockpit = props => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // you make http request here...
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000); // if we pass it [] an empty array, use effect will run once, for the first time and then never, this is equl to componentDidMount
     // will run before the component it destroy, it equivalents to ComponentWillUnmount in base class component
     return () => {
+      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect');
     };
   }, [props.persons]); //by using [props.persons],we're telling useeffect to run everytime persons change
