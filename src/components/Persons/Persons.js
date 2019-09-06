@@ -37,6 +37,11 @@ class Persons extends Component {
     console.log('[Persons.js] componentDidUpate');
     console.log(snapshot);
   }
+
+  // before destroying the component, we can use it to do some cleanup work
+  componentWillUnmount() {
+    console.log('[Persons.js] componentWillUnmount');
+  }
   render() {
     console.log('[Persons.js] rendering...');
     return this.props.persons.map((person, index) => {
