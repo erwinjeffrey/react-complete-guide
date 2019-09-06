@@ -20,7 +20,13 @@ class Persons extends Component {
   //here you can catch just before what will be the next props and the nextState
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate');
-    return true;
+    if (nextProps.persons !== this.props.persons) {
+      //render the person component if the props are different
+      // if they are the same it means nothing has change
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //execute right after render method
