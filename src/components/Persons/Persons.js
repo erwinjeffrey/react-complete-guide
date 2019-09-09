@@ -1,33 +1,31 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
+import { checkServerIdentity } from 'tls';
 
-class Persons extends Component {
-  /* Theare are update lifecycle, as we have creation lifecycle we do
-  also have update lifecycle*/
+class Persons extends PureComponent {
+  /*Extending PureComponent instead of Component, you don't have to implement
+  the  the shouldComponentUpdate , it will do it automatically will all
+  the props check, the check any any change, I mean it will execute exact code below */
 
   /*static getDerivedStateFromProps(props, state) {
     console.log('[Persons.js] getDerivedStateFromProps');
     return state;
   }*/
 
-  // this an old licycle hook, it's no longer available in this version
   /*componentWillReceiveProps(props) {
     console.log('[Persons.js] componentWillReceiveProps');
   }*/
 
-  // this lifecycle hook execute just before a component is updated
-  // and decided if you want te component to be updated or not
-  //here you can catch just before what will be the next props and the nextState
-  shouldComponentUpdate(nextProps, nextState) {
+  /* shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate');
-    if (nextProps.persons !== this.props.persons) {
-      //render the person component if the props are different
-      // if they are the same it means nothing has change
+    if (nextProps.persons !== this.props.persons
+      || nextProps.changed !== this.props.changed ||
+      nextProps.clicked !== this.props.clicked) {
       return true;
     } else {
       return false;
     }
-  }
+  }*/
 
   //execute right after render method
   //here you can compare your previous state with the next one
