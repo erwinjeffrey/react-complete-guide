@@ -18,7 +18,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   };
 
   // this is a lifecycle method that is run after the constructor,to get the right state from props(preparing your state)
@@ -26,10 +27,6 @@ class App extends Component {
     console.log('[App.js] getDerivedStateFromProps', props);
     return state;
   }
-
-  //this is an old lifecyle hook method ,
-  //it will execute just before the componentDidMount, it was used to prepare the state
-  //now this can be done via the getDerivedStateFromProps, it will be remove soon
 
   /*componentWillMount() {
     console.log('[App.js] componentWillMount');
@@ -65,7 +62,12 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      };
+    });
   };
 
   deletePersonHandler = personIndex => {
