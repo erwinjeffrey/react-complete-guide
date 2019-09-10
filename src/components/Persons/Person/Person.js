@@ -1,9 +1,15 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Aux from '../../../hoc/Aux';
 import classes from './Person.css';
 import withClass from './../../../hoc/withClass';
 
 class Person extends Component {
+  /*
+  In order to run with props correctly, in case you're building a lib
+  and you want people to know what types of props to send to:
+  npm install --save prop-types
+  */
   render() {
     console.log('[Person.js] rendering...');
     return (
@@ -23,4 +29,10 @@ class Person extends Component {
   }
 }
 
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
 export default withClass(Person, classes.Person);
