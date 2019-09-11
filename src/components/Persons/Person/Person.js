@@ -17,7 +17,10 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
-  // the best way to use context
+  // the best way to use context,
+  //this allows react to automatically connect your base class component to you context
+  //this gives you a new property: the context props
+  // that you can access with it anywhere like in the componentDidMount
   static contextType = AuthContext;
 
   componentDidMount() {
