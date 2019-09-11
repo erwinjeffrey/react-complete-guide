@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import Person from './Person/Person';
-import { checkServerIdentity } from 'tls';
 
 class Persons extends PureComponent {
   /*Extending PureComponent instead of Component, you don't have to implement
